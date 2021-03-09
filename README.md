@@ -12,3 +12,6 @@ I used SLiM to simulate the melanic allele under 3 stepping stone scenarios. Not
 
 For each scenario, I ran four seperate simulations treating the melanic allele as neutral, neutral with assortative mating, experiencing spatially varying selection, and experiencing spatially varying selection with assortative mating. For assortative mating, melanics prefer melanics 1% more than red birds, and red birds prefer red birds 1% more than melanics. For spatially varying selection, selection coefficient (s) was 0.01 and spatial variation in selection was achieved by varying the relative fitness (w). Variation in relative fitness was done as follows:
 
+<img src="scenario_1_selection.png" height = "500"> 
+<img src="scenario_2_selection.png" height = "500"> 
+<img src="scenario_3_selection.png" height = "500"> 
