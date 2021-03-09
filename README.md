@@ -1,6 +1,6 @@
 # Melanic allele simulations
 
-I used SLiM to simulate the melanic allele under 3 stepping stone scenarios. Note that these are not fully spatially explicit, but they are quasi spatial because migration is limited in certain directions. SLiM can do fully spatially explicit simulations, but I figured I would try these simpler models first. In all scenarios, migration rates are symmetric and 0.01. The basic structure of three scenarios is:
+I used SLiM to simulate the melanic allele under 3 stepping stone scenarios. Note that these are not fully spatially explicit, but they are quasi spatial because migration is limited in certain directions. SLiM can do fully spatially explicit simulations, but I figured I would try these simpler models first. In all scenarios, migration rates are symmetric and equal to 0.01. The basic structure of three scenarios is:
 * stable population size - 20000 total individuals spread across three linear stepping stone 'fingers' (Chillon, Rimac, and Lurin valleys) connected at the coast. You can click the image to open it in another larger window.
 <img src="scenario_1.png" height = "500">
 
