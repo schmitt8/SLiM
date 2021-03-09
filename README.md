@@ -14,4 +14,4 @@ For each scenario, I ran four seperate simulations treating the melanic allele a
 
 <img src="scenario_1_selection.png" height = "500"> 
 <img src="scenario_2_selection.png" height = "500"> 
-<img src="scenario_3_selection.png" height = "500"> 
+<img src="scenario_3_selection.png"> 
