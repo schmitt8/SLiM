@@ -1,0 +1,256 @@
+/// simulation of exponential growth of Lima subpopulation and spatially varying selection
+
+initialize() /* initialize simulation */ {
+	initializeMutationRate(0); // set mutation rate to 0 since we will add a single mutation manually below
+	initializeMutationType("m1", 0.95, "f", 0.01); // define the type of mutation we will add, adaptive in this case
+	m1.convertToSubstitution = F; // keep track of mutation if it fixes
+	initializeGenomicElementType("g1", m1, 1.0); // create a single genomic element 
+	initializeGenomicElement(g1, 0, 0); // size and composition of chromosome, only one base long
+	initializeRecombinationRate(1e-8); // set recombination rate - doesn't really matter for this simple scenario
+	initializeSex("A"); // simulate sexual reproduction with two sexes
+}
+
+
+
+
+
+1 /* add subpopulations and migration rates between them */ {
+	sim.addSubpop("p1", 1000);
+	sim.addSubpop("p2", 750);
+	sim.addSubpop("p3", 500);
+	sim.addSubpop("p4", 250);
+	sim.addSubpop("p5", 200);
+	sim.addSubpop("p6", 150);
+	sim.addSubpop("p7", 100);
+	sim.addSubpop("p8", 50);
+	sim.addSubpop("p9", 1000);
+	sim.addSubpop("p10", 750);
+	sim.addSubpop("p11", 500);
+	sim.addSubpop("p12", 250);
+	sim.addSubpop("p13", 200);
+	sim.addSubpop("p14", 150);
+	sim.addSubpop("p15", 100);
+	sim.addSubpop("p16", 50);
+	sim.addSubpop("p17", 1000);
+	sim.addSubpop("p18", 750);
+	sim.addSubpop("p19", 500);
+	sim.addSubpop("p20", 250);
+	sim.addSubpop("p21", 200);
+	sim.addSubpop("p22", 150);
+	sim.addSubpop("p23", 100);
+	sim.addSubpop("p24", 50);
+	p1.setMigrationRates(c(p2, p9, p17), c(0.01, 0.01, 0.01));
+	p2.setMigrationRates(c(p1, p3), c(0.01, 0.01));
+	p3.setMigrationRates(c(p2, p4), c(0.01, 0.01));
+	p4.setMigrationRates(c(p3, p5), c(0.01, 0.01));
+	p5.setMigrationRates(c(p4, p6), c(0.01, 0.01));
+	p6.setMigrationRates(c(p5, p7), c(0.01, 0.01));
+	p7.setMigrationRates(c(p6, p8), c(0.01, 0.01));
+	p8.setMigrationRates(p7, 0.01);
+	p9.setMigrationRates(c(p1, p10), c(0.01, 0.01));
+	p10.setMigrationRates(c(p9, p11), c(0.01, 0.01));
+	p11.setMigrationRates(c(p10, p12), c(0.01, 0.01));
+	p12.setMigrationRates(c(p11, p13), c(0.01, 0.01));
+	p13.setMigrationRates(c(p12, p14), c(0.01, 0.01));
+	p14.setMigrationRates(c(p13, p15), c(0.01, 0.01));
+	p15.setMigrationRates(c(p14, p16), c(0.01, 0.01));
+	p16.setMigrationRates(p15, 0.01);
+	p17.setMigrationRates(c(p1, p18), c(0.01, 0.01));
+	p18.setMigrationRates(c(p17, p19), c(0.01, 0.01));
+	p19.setMigrationRates(c(p18, p20), c(0.01, 0.01));
+	p20.setMigrationRates(c(p19, p21), c(0.01, 0.01));
+	p21.setMigrationRates(c(p20, p22), c(0.01, 0.01));
+	p22.setMigrationRates(c(p21, p23), c(0.01, 0.01));
+	p23.setMigrationRates(c(p22, p24), c(0.01, 0.01));
+	p24.setMigrationRates(p23, 0.01);
+}
+
+
+
+
+
+// set relative fitnesses
+1:10000 fitness(m1, p3) /* set relative fitness of mutation in subpopulation 3 */ {
+	return 1/(relFitness);
+}
+
+1:10000 fitness(m1, p11) /* set relative fitness of mutation in subpopulation 11 */ {
+	return 1/(relFitness);
+}
+
+1:10000 fitness(m1, p19) /* set relative fitness of mutation in subpopulation 19 */ {
+	return 1/(relFitness);
+}
+
+1:10000 fitness(m1, p4) /* set relative fitness of mutation in subpopulation 4 */ {
+	return 1/(relFitness)^2;
+}
+
+1:10000 fitness(m1, p12) /* set relative fitness of mutation in subpopulation 12 */ {
+	return 1/(relFitness)^2;
+}
+
+1:10000 fitness(m1, p20) /* set relative fitness of mutation in subpopulation 20 */ {
+	return 1/(relFitness)^2;
+}
+
+1:10000 fitness(m1, p5) /* set relative fitness of mutation in subpopulation 5 */ {
+	return 1/(relFitness)^4;
+}
+
+1:10000 fitness(m1, p13) /* set relative fitness of mutation in subpopulation 13 */ {
+	return 1/(relFitness)^4;
+}
+
+1:10000 fitness(m1, p21) /* set relative fitness of mutation in subpopulation 21 */ {
+	return 1/(relFitness)^4;
+}
+
+1:10000 fitness(m1, p6) /* set relative fitness of mutation in subpopulation 6 */ {
+	return 1/(relFitness)^8;
+}
+
+1:10000 fitness(m1, p14) /* set relative fitness of mutation in subpopulation 14 */ {
+	return 1/(relFitness)^8;
+}
+
+1:10000 fitness(m1, p22) /* set relative fitness of mutation in subpopulation 22 */ {
+	return 1/(relFitness)^8;
+}
+
+1:10000 fitness(m1, p7) /* set relative fitness of mutation in subpopulation 7 */ {
+	return 1/(relFitness)^16;
+}
+
+1:10000 fitness(m1, p15) /* set relative fitness of mutation in subpopulation 15 */ {
+	return 1/(relFitness)^16;
+}
+
+1:10000 fitness(m1, p23) /* set relative fitness of mutation in subpopulation 23 */ {
+	return 1/(relFitness)^16;
+}
+
+1:10000 fitness(m1, p8) /* set relative fitness of mutation in subpopulation 8 */ {
+	return 1/(relFitness)^16;
+}
+
+1:10000 fitness(m1, p16) /* set relative fitness of mutation in subpopulation 16 */ {
+	return 1/(relFitness)^16;
+}
+
+1:10000 fitness(m1, p24) /* set relative fitness of mutation in subpopulation 24 */ {
+	return 1/(relFitness)^16;
+}
+
+
+
+
+
+1 late() /* add a single adaptive mutation */{
+	target = sample(p1.genomes, 20); // add mutation to subpopulation 1 at fequency of 1% (20 out of 2000 chromosomes)
+	target.addNewDrawnMutation(m1, 0); // add mutation at genome position 0
+}
+
+
+
+
+
+1:10000 /* Lima subpopulation grows exponentially  */ {
+	// every 4 generations Lima subpopulation grows by current size * 1.001031 - this results in subpop size of 12000 after 10000 generations	
+	if (sim.generation%4 == 0) {
+		newSize = asInteger(round(p1.individualCount * 1.001031));
+		p1.setSubpopulationSize(newSize);
+	}
+	
+	// towards very end of simulation, the above code will try to generate subpop size larger than 12000. below code caps subpop size at 12000
+	if (p1.individualCount > 12000) {
+		p1.setSubpopulationSize(12000);
+	}
+}
+
+
+
+
+
+1000:10000 early() /* set up mate choice weights */ {
+	inds = sim.subpopulations.individuals;
+	inds.tag = inds.countOfMutationsOfType(m1);
+	
+	for (subpop in sim.subpopulations)
+	{
+		has_m1 = (subpop.individuals.tag > 0);
+		subpop.setValue("weights1", ifelse(has_m1, 1.01, 0.99));
+		subpop.setValue("weights2", ifelse(has_m1, 0.99, 1.01));
+	}
+}
+
+1000:10000 mateChoice /* choose mates based on weights */ ()
+{
+	if (individual.tag > 0)
+	{
+		return weights * sourceSubpop.getValue("weights1");
+	}
+	else
+	{
+		return weights * sourceSubpop.getValue("weights2");
+	}
+}
+
+
+
+
+
+1:10000 late() /* create output each generation */ {
+	// create output - columns are allele freq per subpopulation and Fst between coast and eastern valleys, rows are generations
+	cat(paste(sim.generation,
+		sim.mutationFrequencies(sim.subpopulations[0], sim.mutationsOfType(m1)) ,
+		sim.mutationFrequencies(sim.subpopulations[1], sim.mutationsOfType(m1)) ,
+		sim.mutationFrequencies(sim.subpopulations[2], sim.mutationsOfType(m1)) ,
+		sim.mutationFrequencies(sim.subpopulations[3], sim.mutationsOfType(m1)) ,
+		sim.mutationFrequencies(sim.subpopulations[4], sim.mutationsOfType(m1)) ,
+		sim.mutationFrequencies(sim.subpopulations[5], sim.mutationsOfType(m1)) ,
+		sim.mutationFrequencies(sim.subpopulations[6], sim.mutationsOfType(m1)) ,
+		sim.mutationFrequencies(sim.subpopulations[7], sim.mutationsOfType(m1)) ,
+		sim.mutationFrequencies(sim.subpopulations[8], sim.mutationsOfType(m1)) ,
+		sim.mutationFrequencies(sim.subpopulations[9], sim.mutationsOfType(m1)) ,
+		sim.mutationFrequencies(sim.subpopulations[10], sim.mutationsOfType(m1)) ,
+		sim.mutationFrequencies(sim.subpopulations[11], sim.mutationsOfType(m1)) ,
+		sim.mutationFrequencies(sim.subpopulations[12], sim.mutationsOfType(m1)) ,
+		sim.mutationFrequencies(sim.subpopulations[13], sim.mutationsOfType(m1)) ,
+		sim.mutationFrequencies(sim.subpopulations[14], sim.mutationsOfType(m1)) ,
+		sim.mutationFrequencies(sim.subpopulations[15], sim.mutationsOfType(m1)) ,
+		sim.mutationFrequencies(sim.subpopulations[16], sim.mutationsOfType(m1)) ,
+		sim.mutationFrequencies(sim.subpopulations[17], sim.mutationsOfType(m1)) ,
+		sim.mutationFrequencies(sim.subpopulations[18], sim.mutationsOfType(m1)) ,
+		sim.mutationFrequencies(sim.subpopulations[19], sim.mutationsOfType(m1)) ,
+		sim.mutationFrequencies(sim.subpopulations[20], sim.mutationsOfType(m1)) ,
+		sim.mutationFrequencies(sim.subpopulations[21], sim.mutationsOfType(m1)) ,
+		sim.mutationFrequencies(sim.subpopulations[22], sim.mutationsOfType(m1)) ,
+		sim.mutationFrequencies(sim.subpopulations[23], sim.mutationsOfType(m1)) ,
+		calcFST(c(p1.genomes, p9.genomes, p17.genomes), p8.genomes),
+		calcFST(c(p1.genomes, p9.genomes, p17.genomes), p16.genomes),
+		calcFST(c(p1.genomes, p9.genomes, p17.genomes), p24.genomes)) + "\n");
+	
+	// stop simulation if allele is lost and print "allele lost"
+	if (sim.countOfMutationsOfType(m1) == 0)
+	{
+		print("allele lost");
+		sim.simulationFinished();
+	}
+	
+	// stop simulation if allele fixes in all subpopulations and print "allele fixed"
+	if (sim.countOfMutationsOfType(m1) > 0)
+	{
+		if (sim.mutationCounts(sim.subpopulations, sim.mutationsOfType(m1))/2 == sum(sim.subpopulations.individualCount))
+		{
+			print("allele fixed");
+			sim.simulationFinished();
+		}
+	}
+	
+	// print "simulation finished" if simulation finishes	
+	if(sim.generation == 10000) {
+		print("simulation finished");
+		print("simulation finished");
+	}
+}
